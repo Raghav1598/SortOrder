@@ -27,7 +27,7 @@ jobs:
           pyinstaller app.py --onefile
 
       - name: Upload EXE artifact
-        uses: actions/upload-artifact@v3@28e465e5d6509f3a3c0dcf98a387e4cc6e60b0ab
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: python-app-exe
           path: dist/SortOrder.exe
