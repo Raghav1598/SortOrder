@@ -1,12 +1,11 @@
-name: Build Windows EXE
+name: Build EXE for Windows
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
-  build:
+  build-windows:
     runs-on: windows-latest
 
     steps:
@@ -19,13 +18,16 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pyinstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
 
       - name: Build executable
-        run: pyinstaller --onefile --windowed app.py
+        run: |
+          pyinstaller your_script.py --onefile
 
-      - name: Upload EXE
+      - name: Upload EXE artifact
         uses: actions/upload-artifact@v3
         with:
-          name: windows-exe
-          path: dist/app.exe
+          name: python-app-exe
+          path: dist/your_script.exe
